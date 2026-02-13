@@ -25,7 +25,7 @@
                 <td><?= $row->course_name ?></td>
                 <td><?= $row->course_code ?></td>
                 <td><?= $row->instructor ?></td>
-                <td><a href="/courses-delete?id=<?= $row->course_id ?>" onclick="return confirmSubmission()">ลบข้อมูล</a></td>
+                <td><a href="/courses-delete?id=<?= $row->course_id ?>" onclick="return confirmSubmission()">ลงทะเบียน</a></td>
                 </tr>
 	     <?php
 	        }
@@ -40,7 +40,7 @@
     <?php include 'footer.php' ?>
     <script>
         function confirmSubmission() {
-            return confirm("ยืนยันการลบข้อมูล ?");
+            return confirm("ยืนยันการลงทะเบียน ?");
         }
     </script>
 </body>
