@@ -10,7 +10,6 @@
         <div><a href="/login">Login</a></div>
     <?php else: ?>
         <div><a href="/">Home</a></div>
-        <div><a href="/contact">Contact us</a></div>
         <div><a href="/students">ข้อมูลนักเรียน</a></div>
         <div><a href="/courses">ข้อมูลวิชา</a></div>
         <div><a href="/logout">ออกจากระบบ</a></div>

@@ -4,12 +4,6 @@
 </head>
 <body>
     <?php include 'header.php' ?>
-
-    <form action="" method="get">
-    <input type="text" name="keyword" value="<?= htmlspecialchars($_GET['keyword'] ?? '') ?>" />
-    <button type="submit">Search</button>
-</form>
-
     <main>
         <h1><?= htmlspecialchars($data['title']) ?></h1>
         <h2>ข้อมูลนักเรียน</h2>
