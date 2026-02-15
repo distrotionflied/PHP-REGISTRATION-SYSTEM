@@ -25,7 +25,7 @@
                 <td><?= $row->course_name ?></td>
                 <td><?= $row->course_code ?></td>
                 <td><?= $row->instructor ?></td>
-                <td><a href="/courses-delete?id=<?= $row->course_id ?>" onclick="return confirmSubmission()">ลงทะเบียน</a></td>
+                <td><a href="/enroll-insert?id=<?= $row->course_id ?>" onclick="return confirmSubmission()">ลงทะเบียน</a></td>
                 </tr>
 	     <?php
 	        }
@@ -41,6 +41,17 @@
     <script>
         function confirmSubmission() {
             return confirm("ยืนยันการลงทะเบียน ?");
+        }
+    </script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const message = urlParams.get('message');
+
+        if (message) {
+            alert(message); // แสดงข้อความที่ส่งมาจาก URL
+            
+            // ล้าง URL ให้สวยงาม ไม่ให้มี ?message=... ค้างอยู่
+            window.history.replaceState({}, document.title, window.location.pathname);
         }
     </script>
 </body>

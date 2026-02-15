@@ -12,23 +12,26 @@ function insertCourse($course): bool
 {
     global $conn;
     $sql = 'insert into courses (course_name, course_code, instructor) VALUES (?,?,?)';
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param('sss',$course['name'], $course['code'], $course['instructor']);
-    $stmt->execute();
-    if ($stmt->affected_rows > 0) {
-        return true;
-    } else {
-        return false;
-    }
+    $statement = $conn->prepare($sql);
+    $statement->execute([$course['name'], $course['code'], $course['instructor']]);
+    return $statement->affected_rows > 0;
 }
 
 function deleteCouresById(int $id): bool
 {
     global $conn;
     $sql = 'delete from courses where course_id = ?';
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param('i', $id);
-    $stmt->execute();
-    return $stmt->affected_rows > 0;
+    $statement = $conn->prepare($sql);
+    $statement->execute([$id]);
+    return $statement->affected_rows > 0;
+}
+
+function getCourseById(int $id): mysqli_result|bool
+{
+    global $conn;
+    $sql = 'select * from courses where course_id = ?';
+    $statement = $conn->prepare($sql);
+    $statement->execute([$id]);
+    return $statement->get_result();
 }
 
