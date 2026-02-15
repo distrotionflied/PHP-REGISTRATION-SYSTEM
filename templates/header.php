@@ -1,3 +1,5 @@
+
+<head><link rel="stylesheet" href="style.css"></head>
 <!-- Header และ Footer อาจแยกออกเป็นไฟล์แยกต่างหากได้ -->
 <header>
     <h1>Registration System</h1>

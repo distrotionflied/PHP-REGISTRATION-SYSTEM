@@ -3,9 +3,9 @@ function insertEnroll(int $student_id,int $course_id ): array
 {
     global $conn;
     try {
-        $sql = 'insert into enrollment (student_id,course_id) VALUES (?,?)';
+        $sql = 'INSERT INTO enrollment (student_id, course_id, enrollment_date) VALUES (?, ?, ?)';
         $statement = $conn->prepare($sql);
-        $statement->execute([$student_id,$course_id]);
+        $statement->execute([$student_id,$course_id,date('Y-m-d')]);
         $data_chack = $statement->affected_rows > 0;
         return [
                 'success' =>  $data_chack,

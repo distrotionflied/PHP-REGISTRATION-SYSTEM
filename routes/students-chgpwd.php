@@ -1,7 +1,7 @@
 <?php
 
 
-if (!isset($_GET['id'])) {
+if (!isset($_GET['id']) || $_SESSION['admin'] != $_ENV['ADMIN_PASS'] || !isset($_SESSION['admin'])) {
     header('Location: /students');
     exit;
 } else {

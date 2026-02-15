@@ -2,6 +2,7 @@
 
 <head>
     <title><?= htmlspecialchars($data['title']) ?></title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -64,9 +65,8 @@
                 <td><?= $user ? queryData('phone_number', $user) : '' ?></td>
             </tr>
         </table>
-    </main>
 
-    <h2>วิชาที่ลงทะเบียน</h2>
+        <h2>วิชาที่ลงทะเบียน</h2>
     <table border="2">
         <?php
         if (!$course_enroll) {
@@ -114,6 +114,9 @@
         ?>
 
     </table>
+    </main>
+
+    
     <?php include 'footer.php' ?>
     <script>
         function confirmSubmission() {

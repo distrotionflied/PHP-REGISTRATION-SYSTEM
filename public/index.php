@@ -4,6 +4,7 @@ declare(strict_types=1);
 session_start();
 
 // กำหนดค่าคงที่สำหรับไดเรกทอรีต่างๆ ในโปรเจค
+$env = parse_ini_file(__DIR__ . '/../.env');
 const INCLUDES_DIR = __DIR__ . '/../includes';
 const ROUTE_DIR = __DIR__ . '/../routes';
 const TEMPLATES_DIR = __DIR__ . '/../templates';
@@ -27,7 +28,7 @@ const PUBLIC_ROUTES = ['/', '/login'];
 if (in_array(strtolower($_SERVER['REQUEST_URI']), PUBLIC_ROUTES)) {
     dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
     exit;
-} elseif (isset($_SESSION['timestamp']) && time() - $_SESSION['timestamp'] < 90) {
+} elseif (isset($_SESSION['timestamp']) && time() - $_SESSION['timestamp'] < 600) {
     // 10 Sec.
     $unix_timestamp = time();
     $_SESSION['timestamp'] = $unix_timestamp;
