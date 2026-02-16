@@ -8,18 +8,16 @@
     <main>
         <h1><?= htmlspecialchars($data['title']) ?></h1>
 
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>ชื่อ-นามสกุล</th>
-                    <th>อีเมล</th>
-                    <th>เบอร์โทรศัพท์</th>
-                    <th>จัดการ</th>
-                </tr>
-            </thead>
+        <table class="table">
             <tbody>
                 <?php if ($data['students'] && $data['students']->num_rows > 0): ?>
+                     <tr>
+                        <th>ID</th>
+                        <th>ชื่อ-นามสกุล</th>
+                        <th>อีเมล</th>
+                        <th>เบอร์โทรศัพท์</th>
+                        <th>จัดการ</th>
+                    </tr>
                     <?php while ($row = $data['students']->fetch_assoc()): ?>
                         <tr>
                             <td><?= $row['student_id'] ?></td>

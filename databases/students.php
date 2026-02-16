@@ -42,7 +42,7 @@ function deleteStudentsById(int $id): bool
     return $statement->affected_rows > 0;
 }
 
-function getStudentById(int $id): mysqli_result|bool
+function getStudentById(int $id): array
 {
     global $conn;
     $sql = 'select * from students where student_id = ?';
@@ -50,7 +50,12 @@ function getStudentById(int $id): mysqli_result|bool
     $statement->bind_param('i', $id);
     $statement->execute();
     $result = $statement->get_result();
-    return $result;
+    if ($result->num_rows > 0) {
+        //ดึง row เดียว
+        $user = $result->fetch_assoc();
+        return $user;
+    }
+    return [];
 }
 
 function updateStudentPassword(int $id, string $hashed_password): bool

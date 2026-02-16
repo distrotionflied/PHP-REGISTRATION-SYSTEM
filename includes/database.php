@@ -20,3 +20,4 @@ function getConnection(): mysqli
 require_once DATABASES_DIR . '/students.php';
 require_once DATABASES_DIR . '/courses.php';
 require_once DATABASES_DIR . '/enrollment.php';
+require_once DATABASES_DIR . '/data-relation.php';

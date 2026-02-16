@@ -1,1 +1,1 @@
-404 Page not found
+<p>404 Page not found</p>

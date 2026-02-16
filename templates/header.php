@@ -4,7 +4,7 @@
 <header>
     <h1>Registration System</h1>
 </header>
-<nav>
+<nav class="nav-bar">
     <?php
     $uri = strtolower(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
     if (!isset($_SESSION['timestamp'])): ?>
@@ -16,7 +16,5 @@
         <div><a href="/courses">ข้อมูลวิชา</a></div>
         <div><a href="/logout">ออกจากระบบ</a></div>
     <?php endif; ?>
-
-
 </nav>
 <!-- Header และ Footer อาจแยกออกเป็นไฟล์แยกต่างหากได้ -->

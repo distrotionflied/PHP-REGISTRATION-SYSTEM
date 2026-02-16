@@ -7,33 +7,30 @@
 
     <!-- ส่วนแสดงผลหลักของหน้า -->
     <main>
-        <h1><?= $data['title'] ?></h1>
-        <table border="2">
-        <tr>
-            <th>ลำดับที่</th>
-            <th>ชื่อวิชา</th>
-            <th>รหัสวิชา</th>
-            <th>อาจารย์ผู้สอน</th>
-            <th></th>
-        </tr>
-        <?php
-        if ($data['result'] != []) {
-	        while ($row = $data['result']->fetch_object()) {
-	        ?>
+        <h1><?= htmlspecialchars($title) ?></h1>
+        <?php  if (empty($courses)) : ?>
+            <h4>ไม่พบข้อมูล</h4>
+        <?php else:?>
+        <table class="table">
                 <tr>
-	            <td><?= $row->course_id ?></td>
-                <td><?= $row->course_name ?></td>
-                <td><?= $row->course_code ?></td>
-                <td><?= $row->instructor ?></td>
-                <td><a href="/enroll-insert?id=<?= $row->course_id ?>" onclick="return confirmSubmission()">ลงทะเบียน</a></td>
+                    <th>ลำดับที่</th>
+                    <th>ชื่อวิชา</th>
+                    <th>รหัสวิชา</th>
+                    <th>อาจารย์ผู้สอน</th>
+                    <th></th>
                 </tr>
-	     <?php
-	        }
-        }else{
-            echo 'ไม่พบข้อมูล';
-        }
-        ?>
-        </table>
+                <?php foreach ($courses as $course):?>
+                        <tr>
+                        <td><?= htmlspecialchars($course['id']) ?></td>
+                        <td><?= htmlspecialchars($course['name']) ?></td>
+                        <td><?= htmlspecialchars($course['code']) ?></td>
+                        <td><?= htmlspecialchars($course['teacher']) ?></td>
+                        <td><a href="/enroll-insert?id=<?= htmlspecialchars($course['id']) ?>" onclick="return confirmSubmission()">ลงทะเบียน</a></td>
+                        </tr>
+                <?php endforeach;?>
+            </table>
+        <?php endif;?>
+        
     </main>
     <!-- ส่วนแสดงผลหลักของหน้า -->
 
