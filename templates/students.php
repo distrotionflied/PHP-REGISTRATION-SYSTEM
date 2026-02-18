@@ -25,7 +25,7 @@
             </tr>
             <tr>
                 <th>นามสกุล</th>
-                <td><?= htmlspecialchars($user['lanme'] ?? 'unknown') ?></td>
+                <td><?= htmlspecialchars($user['lname'] ?? 'unknown') ?></td>
             </tr>
             <tr>
                 <th>วันเกิด</th>
