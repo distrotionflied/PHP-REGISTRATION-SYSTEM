@@ -9,6 +9,16 @@ function getStudents(): mysqli_result|bool
     return $result;
 }
 
+function createStudent($student): bool
+{
+    global $conn;
+    $sql = 'insert into students (first_name, last_name, date_of_birth, phone_number, email, password) VALUES (?,?,?,?,?,?)';
+    $statement = $conn->prepare($sql);
+    $hashed_password = password_hash($student['password'], PASSWORD_DEFAULT);
+    $statement->execute([$student['fname'], $student['lname'], $student['birthday'], $student['tel'], $student['email'], $hashed_password]);
+    return $statement->affected_rows > 0;
+}
+
 function getStudentsByKeyword(string $keyword): mysqli_result|bool
 {
     global $conn;

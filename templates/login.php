@@ -12,6 +12,9 @@
             <input type="text" name="email" id="email" /><br>
             <label for="password">รหัสผ่าน</label><br>
             <input type="password" name="password" id="password" /><br>
+            <?php if(isset($error)): ?>
+                <p><?= $error ?></p>
+            <?php endif; ?>
             <button type="submit">เข้าสู่ระบบ</button>
         </form>
     </main>

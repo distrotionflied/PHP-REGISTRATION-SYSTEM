@@ -418,3 +418,35 @@ input,
 textarea {
     transition: all 0.2s ease;
 }
+
+.change-password {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.change-password a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff; /* สีน้ำเงินหลัก */
+    color: #ffffff; /* สีตัวอักษร */
+    text-decoration: none; /* เอาเส้นใต้ตัวอักษรออก */
+    border-radius: 5px; /* ความมนของมุมปุ่ม */
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* เอฟเฟกต์ตอนเอาเมาส์ไปชี้ (Hover) */
+.change-password a:hover {
+    background-color: #0056b3; /* สีเข้มขึ้นเล็กน้อย */
+    text-decoration: none;
+    color: #ffffff;
+}
+
+/* เอฟเฟกต์ตอนคลิก (Active) */
+.change-password a:active {
+    transform: translateY(1px); /* ปุ่มยุบลงเล็กน้อย */
+    box-shadow: none;
+}

@@ -8,7 +8,7 @@
 <body>
     <?php include 'header.php' ?>
     <main>
-        
+        <?php if(isset($message)){echo `<h1><?= htmlspecialchars($message) ?></h1>`;} ?>
         <h1><?= htmlspecialchars($title) ?></h1>
         <div class="container">
         <h2>ข้อมูลนักเรียน</h2>
@@ -16,8 +16,7 @@
         if(empty($user)):
         ?>
         <h5>ไม่พบข้อมูล</h5>
-        <?php else: 
-            $table_head = ['ชื่อ','นามสกุล','วันเกิด','เบอร์โทรศัพท์'];?>
+        <?php else: ?>
         <table border="2">
             <tr>
                 <th>ชื่อ</th>
@@ -26,6 +25,10 @@
             <tr>
                 <th>นามสกุล</th>
                 <td><?= htmlspecialchars($user['lname'] ?? 'unknown') ?></td>
+            </tr>
+            <tr>
+                <th>อีเมล</th>
+                <td><?= htmlspecialchars($user['email'] ?? 'unknown') ?></td>
             </tr>
             <tr>
                 <th>วันเกิด</th>
@@ -37,6 +40,8 @@
             </tr>
         </table>
         <?php endif; ?>
+        <div class="change-password">
+            <a href="/students-chgpwd?id=<?= htmlspecialchars($user['student_id'] ?? '') ?>">เปลี่ยนรหัสผ่าน</a>
         </div>
         <div class="container">
         <h2>วิชาที่ลงทะเบียน</h2>
@@ -77,6 +82,7 @@
         </div>
     </main>
 
+    
     
     <?php include 'footer.php' ?>
     <script>

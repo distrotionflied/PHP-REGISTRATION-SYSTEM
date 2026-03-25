@@ -33,7 +33,9 @@
         select  first_name as fname,
                 last_name  as lname, 
                 date_of_birth as birthday,
-                phone_number as tel
+                phone_number as tel,
+                email,
+                student_id 
         from students
         where student_id = ?
         ';
