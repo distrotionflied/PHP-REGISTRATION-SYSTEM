@@ -1,7 +1,5 @@
 <?php
 
-$env = parse_ini_file(__DIR__ . '/../.env');
-
 $hostname = $env['DB_HOST'];
 $username = $env['DB_USER'];
 $password = $env['DB_PASS'];
@@ -21,3 +19,5 @@ function getConnection(): mysqli
 // database functions ต่างๆ
 require_once DATABASES_DIR . '/students.php';
 require_once DATABASES_DIR . '/courses.php';
+require_once DATABASES_DIR . '/enrollment.php';
+require_once DATABASES_DIR . '/data-relation.php';

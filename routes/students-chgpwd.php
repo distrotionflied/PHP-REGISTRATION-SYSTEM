@@ -1,41 +1,38 @@
 <?php
+declare(strict_types=1);
 
+$id = (int)($_GET['id'] ?? 0); 
 
-if (!isset($_GET['id'])) {
-    header('Location: /students');
-    exit;
-} else {
-    $id = (int)$_GET['id'];
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $password = $_POST['password'] ?? '';
-        $confirm_password = $_POST['confirm_password'] ?? '';
+if ($id <= 0) { notFound(); }
 
-        if ($password !== $confirm_password) {
-            renderView('400', ['message' => 'Password and Confirm Password do not match']);
-            exit;
-        }
+// --- ส่วนที่จัดการตอนกดปุ่ม (POST) ---
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $password = $_POST['password'] ?? '';
+    $confirm_password = $_POST['confirm_password'] ?? '';
 
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        $res = updateStudentPassword($id, $hashed_password);
-        if ($res > 0) {
-            header('Location: /students');
-            exit;
-        } else {
-            renderView('400', ['message' => 'Something went wrong! on update password']);
-            exit;
-        }
-    } else {        
-        $res = getStudentById($id);
-        if ($res) {
-            renderView('students-chgpwd', array('result' => $res));
-        } else {
-            renderView('400', ['message' => 'Something went wrong! on query student']);
-        }
+    if (empty($password) || $password !== $confirm_password) {
+        // ต้อง Redirect กลับมาที่ชื่อไฟล์ตรงๆ พร้อม ?id=
+        header("Location: /students-chgpwd?id=$id&error=mismatch");
+        exit;
     }
-    /*$res = getStudentById($id);
-    if ($res) {
-        renderView('students-chgpwd', array('result' => $res));
+
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    $isUpdated = updateStudentPassword($id, $hashed_password);
+
+    if ($isUpdated) {
+        header('Location: /students?success=password_changed');
     } else {
-        renderView('400',[ 'message' => 'Something went wrong! on query student']);
-    }*/
+        // ถ้า update ไม่ได้ (เช่นรหัสเดิม) ก็ต้องกลับมาที่หน้าเดิมให้ถูก
+        header("Location: /students-chgpwd?id=$id&error=update_failed");
+    }
+    exit;
 }
+
+// --- ส่วนที่ดึงข้อมูลมาแสดงหน้าจอ (GET) ---
+$student = getStudentById($id);
+if (!$student) { notFound(); exit; }
+
+renderView('students-chgpwd', [
+    'id' => $id,
+    'student' => $student
+]);

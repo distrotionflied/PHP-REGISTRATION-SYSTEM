@@ -12,6 +12,7 @@ if (!isset($_GET['id'])) {
         header('Location: /students');
     } else {
         renderView('400', ['message' => 'Something went wrong! on delete student']);
+        
     }
     
 }
